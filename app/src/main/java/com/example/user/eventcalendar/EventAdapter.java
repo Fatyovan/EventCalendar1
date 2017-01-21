@@ -46,7 +46,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView artistName;
-        ImageView artistImg;
+//        ImageView artistImg;
         TextView tourName;
         TextView date;
         TextView eventTime;
@@ -54,11 +54,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            artistName.findViewById(R.id.Tv_artist_name);
-            artistImg.findViewById(R.id.Iv_artist_img);
-            tourName.findViewById(R.id.Tv_tour_name);
-            date.findViewById(R.id.Tv_date);
-            eventTime.findViewById(R.id.Tv_event_time);
+            artistName = (TextView) itemView.findViewById(R.id.Tv_artist_name);
+//            artistImg = ()findViewById(R.id.Iv_artist_img);
+            tourName= (TextView) itemView.findViewById(R.id.Tv_tour_name);
+            date = (TextView) itemView.findViewById(R.id.Tv_date);
+            eventTime = (TextView) itemView.findViewById(R.id.Tv_event_time);
 
         }
     }
