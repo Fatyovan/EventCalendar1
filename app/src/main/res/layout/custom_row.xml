@@ -2,37 +2,120 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/Tv_event_date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_margin"
+        android:text="@string/event_date_text"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/text_size_20" />
 
     <TextView
         android:id="@+id/Tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/Iv_artist_img" />
+        android:layout_marginStart="@dimen/one_space"
+        android:layout_marginTop="@dimen/top_margin"
+        android:layout_toEndOf="@+id/Tv_event_date_text"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/text_size_20" />
 
     <ImageView
         android:id="@+id/Iv_artist_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true" />
+        android:layout_below="@+id/Tv_event_date_text" />
 
+
+    <TextView
+        android:id="@+id/Tv_artist_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Iv_artist_img"
+        android:text="@string/artist_name_text"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/text_size_16" />
 
     <TextView
         android:id="@+id/Tv_artist_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Iv_artist_img"
-        android:layout_centerVertical="true" />
+        android:layout_marginStart="@dimen/one_space"
+        android:layout_toEndOf="@+id/Tv_artist_name_text"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/text_size_16" />
+
+    <TextView
+        android:id="@+id/Tv_event_time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Tv_artist_name"
+        android:text="@string/event_time_text"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/text_size_16" />
 
     <TextView
         android:id="@+id/Tv_event_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Tv_artist_name" />
+        android:layout_below="@+id/Tv_artist_name"
+        android:layout_marginStart="@dimen/one_space"
+        android:layout_toEndOf="@+id/Tv_event_time_text"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/text_size_16" />
+
+    <TextView
+        android:id="@+id/Tv_tour_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Tv_event_time"
+        android:text="@string/artist_tour_name_text"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/text_size_16" />
 
     <TextView
         android:id="@+id/Tv_tour_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Tv_event_time" />
+        android:layout_below="@+id/Tv_event_time"
+        android:layout_marginStart="@dimen/one_space"
+        android:layout_toEndOf="@+id/Tv_tour_name_text"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/text_size_16" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Tv_tour_name">
+
+        <ImageView
+            android:id="@+id/Im_location_pin"
+            android:layout_width="45sp"
+            android:layout_height="45sp"
+            android:background="@drawable/streetmaptravel" />
+
+        <TextView
+            android:id="@+id/Tv_location_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/one_space"
+            android:layout_toEndOf="@+id/Im_location_pin"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:id="@+id/Tv_location_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/one_space"
+            android:layout_toEndOf="@+id/Tv_location_city"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/text_size_16" />
+
+    </RelativeLayout>
 </RelativeLayout>

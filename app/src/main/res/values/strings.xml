@@ -3,4 +3,11 @@
     <string name="calendar_title">All events on one place</string>
     <string name="event_date">Event date: </string>
     <string name="artist_name">Artist name: </string>
+    <string name="please_wait">Please wait...</string>
+    <string name="event_date_text">Event date: </string>
+    <string name="artist_name_text">Artist name: </string>
+    <string name="event_time_text">Event time: </string>
+    <string name="artist_tour_name_text">Artist tour name: </string>
+    <string name="event_location_text">Event location: </string>
+
 </resources>

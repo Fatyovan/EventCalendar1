@@ -33,14 +33,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fetchEvent();
-
+        progress = new ProgressDialog(this);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        progress = new ProgressDialog(this);
 
+
+        fetchEvent();
 
     }
 
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         GetEvents getEvents = retrofit.create(GetEvents.class);
         Call<List<EventModel>> eventModelCall = getEvents.all();
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setTitle(R.string.please_wait);
         progress.show();
         eventModelCall.enqueue(new Callback<List<EventModel>>() {
             @Override
