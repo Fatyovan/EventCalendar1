@@ -65,6 +65,9 @@ public class EventModel {
     @Expose
     private String venueImageUrl;
 
+    public EventModel() {
+    }
+
     public String getEventId() {
         return eventId;
     }
@@ -193,7 +196,7 @@ public class EventModel {
         this.venueLat = venueLat;
     }
 
-    public String getVanueLong() {
+    public String getVenueLong() {
         return vanueLong;
     }
 

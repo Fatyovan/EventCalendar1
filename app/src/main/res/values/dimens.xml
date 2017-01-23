@@ -5,6 +5,7 @@
     <dimen name="text_size_20">20sp</dimen>
     <dimen name="text_size_18">18sp</dimen>
     <dimen name="text_size_16">16sp</dimen>
+    <dimen name="def_margin">12dp</dimen>
     <dimen name="one_space">2sp</dimen>
-    <dimen name="top_margin">5sp</dimen>
+    <dimen name="top_margin">6dp</dimen>
 </resources>
