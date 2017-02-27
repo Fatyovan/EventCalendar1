@@ -6,12 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:scrollbars="vertical"
     tools:openDrawer="start">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <include
+        layout="@layout/app_bar_nav_drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

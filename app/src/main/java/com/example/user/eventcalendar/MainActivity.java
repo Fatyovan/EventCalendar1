@@ -4,12 +4,17 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.DatePicker;
 import android.widget.RelativeLayout;
@@ -29,7 +34,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private static RecyclerView recyclerView;
     private static RecyclerView.Adapter adapter;
@@ -50,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_nav_drawer);
 
-        if (getSupportActionBar() != null)
-            getSupportActionBar().setTitle(getString(R.string.events_activity));
+//        if (getSupportActionBar() != null)
+//            getSupportActionBar().setTitle(getString(R.string.events_activity));
 
         progress = new ProgressDialog(this);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -61,14 +66,25 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         fetchEvent();
     }
 
     private void fetchEvent() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(ENDPOINT_URL).addConverterFactory(GsonConverterFactory.create()).
                 build();
-        GetEvents getEvents = retrofit.create(GetEvents.class);
-        Call<List<EventModel>> eventModelCall = getEvents.all();
+        RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
+        Call<List<EventModel>> eventModelCall = retrofitInterface.getAllEvents();
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progress.setTitle(R.string.please_wait);
         progress.setCancelable(false);
@@ -76,8 +92,10 @@ public class MainActivity extends AppCompatActivity {
         eventModelCall.enqueue(new Callback<List<EventModel>>() {
             @Override
             public void onResponse(Call<List<EventModel>> call, Response<List<EventModel>> response) {
-                fillData(response.body());
-                progress.dismiss();
+                if(response.isSuccessful()) {
+                    fillData(response.body());
+                    progress.dismiss();
+                }
             }
 
             @Override
@@ -96,11 +114,19 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         //// TODO: 21.01.2017
     }
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
@@ -195,4 +221,13 @@ public class MainActivity extends AppCompatActivity {
         return cal.getTime();
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }

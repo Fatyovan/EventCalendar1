@@ -58,13 +58,17 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             Glide
                     .with(mContext)
                     .load(event.getArtistImage())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .placeholder(R.drawable.picture_default)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
                     .into(holder.artistImg);
         } else {
+
+
             Glide
                     .with(mContext)
                     .load(R.drawable.picture_default)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
                     .into(holder.artistImg);
         }
         holder.eventLocation.setText((event.getVenueCity() + ", " + event.getVenueCountry()));
