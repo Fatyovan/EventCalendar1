@@ -109,7 +109,7 @@
             android:id="@+id/Im_location_pin"
             android:layout_width="45sp"
             android:layout_height="45sp"
-            android:background="@drawable/streetmaptravel" />
+            android:background="@drawable/ic_action_name" />
 
         <TextView
             android:id="@+id/tv_location"

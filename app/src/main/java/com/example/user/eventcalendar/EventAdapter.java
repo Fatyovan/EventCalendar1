@@ -58,7 +58,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             Glide
                     .with(mContext)
                     .load(event.getArtistImage())
-//                    .placeholder(R.drawable.picture_default)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.RESULT)
                     .into(holder.artistImg);

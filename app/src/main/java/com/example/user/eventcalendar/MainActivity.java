@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import layout.FirstFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -164,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 datePickerDialog.show();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -223,9 +225,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-
+        switch (item.getItemId()) {
+            case R.id.nav_camera:
+                FirstFragment fragment = new FirstFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_nav_drawer, fragment, FirstFragment.FIRST_FRAGMENT_TAG).addToBackStack(FirstFragment.FIRST_FRAGMENT_TAG).commit();
+                break;
+            case R.id.nav_gallery:
+                SecondFragment fragment1 = new SecondFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_nav_drawer, fragment1, SecondFragment.SECOND_FRAGMENT_TAG).addToBackStack(SecondFragment.SECOND_FRAGMENT_TAG).commit();
+                break;
+            case R.id.nav_slideshow:
+                ThirdFragment fragment2 = new ThirdFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_nav_drawer, fragment2, ThirdFragment.THIRD_FRAGMENT_TAG).addToBackStack(ThirdFragment.THIRD_FRAGMENT_TAG).commit();
+                break;
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
